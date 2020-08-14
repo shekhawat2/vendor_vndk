@@ -4,15 +4,6 @@ systempath=$1
 thispath=`cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd`
 
 # Copy phh stuffs
-mkdir -p $1/lib/vndk-27
-mkdir -p $1/lib64/vndk-27
-cp -fprn $thispath/vndk-27-arm32/* $1/lib/vndk-27/
-cp -fprn $thispath/vndk-27-arm64/* $1/lib64/vndk-27/
-mkdir -p $1/lib/vndk-sp-27
-mkdir -p $1/lib64/vndk-sp-27
-cp -fprn $thispath/vndk-sp-27-arm32/* $1/lib/vndk-sp-27/
-cp -fprn $thispath/vndk-sp-27-arm64/* $1/lib64/vndk-sp-27/
-
 mkdir -p $1/lib/vndk-28
 mkdir -p $1/lib64/vndk-28
 cp -fprn $thispath/vndk-28-arm32/* $1/lib/vndk-28/
@@ -70,8 +61,6 @@ cp -fpr $1/lib/libbinderthreadstate.so $1/lib/vndk-sp-28/libbinderthreadstate.so
 cp -fpr $1/lib/libcutils.so $1/lib/vndk-sp-28/libqutils.so
 cp -fpr $1/lib/libhidlbase.so $1/lib/vndk-sp-28/libqidlbase.so
 
-$patchelf --add-needed libol.so $1/lib/vndk-27/libgraphicsenv.so
-
 $patchelf --add-needed libqinder.so $1/lib64/vndk-28/libbinder.so
 $patchelf --add-needed libqi.so $1/lib64/vndk-28/libui.so
 $patchelf --add-needed libqinder.so $1/lib64/vndk-28/libui.so
@@ -101,5 +90,3 @@ cp -fpr $1/lib64/libhidltransport.so $1/lib64/vndk-sp-28/libqidltransport.so
 cp -fpr $1/lib64/libbinderthreadstate.so $1/lib64/vndk-sp-28/libbinderthreadstate.so
 cp -fpr $1/lib64/libcutils.so $1/lib64/vndk-sp-28/libqutils.so
 cp -fpr $1/lib64/libhidlbase.so $1/lib64/vndk-sp-28/libqidlbase.so
-
-$patchelf --add-needed libol.so $1/lib64/vndk-27/libgraphicsenv.so
